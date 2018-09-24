@@ -141,11 +141,6 @@ class Products extends Component {
 			pageNumbers.push(i);
 		}
 
-
-		if (sliced.length < text.length) {
-			sliced += '...';
-		}
-
 		return (
 			<ProductsWrapper>
 				<ProductsTitle>
@@ -164,7 +159,7 @@ class Products extends Component {
 										</ProductsItemTitle>
 
 										<ProductsItemDescription>
-											<p>{product.description.slice(0, 100).length < product.description.length ? product.description.slice(0, 100) += '...' : ''}</p>
+											<p>{product.description.slice(0, 100).length < product.description.length ? product.description.slice(0, 100) + '...' : ''}</p>
 										</ProductsItemDescription>
 
 										<ProductsItemImage>
