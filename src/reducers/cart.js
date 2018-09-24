@@ -18,12 +18,12 @@ const cart = ((state = initialState, action) => {
 		case 'REMOVE_PRODUCT':
 			return {
 				...state,
-				items: filter(state.items, (el, o) => o !== filter(state.items, { id: action.payload }).length - 1)
+				items: filter(state.items, (el, i) => i !== state.items.map(mEl => mEl.id === action.payload).lastIndexOf(true))
 			};
 		case 'REMOVE_PRODUCT_ALL':
 			return {
 				...state,
-				items: remove(state.item, o => o.id !== action.payload)
+				items: remove(state.items, o => o.id !== action.payload)
 			};
 		default:
 			return state;

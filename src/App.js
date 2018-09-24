@@ -4,28 +4,11 @@ import Product from './containers/Product';
 import { Switch, Route } from 'react-router-dom';
 import Cart from './containers/Cart';
 import './App.css';
-import styled, { css } from 'styled-components';
-
-const sizes = {
-	desktop: 992,
-	tablet: 768,
-	phone: 576
-};
-
-export const media = Object.keys(sizes).reduce((acc, label) => {
-	acc[label] = (...args) => css`
-    @media (max-width: ${sizes[label] / 16}em) {
-      ${css(...args)}
-    }
-  `;
-
-	return acc
-}, {});
-
-const Container = styled.div`
-	max-width: 1200px;
-	margin: 0 auto;
-`;
+import styled from 'styled-components';
+import { media } from './components/Layout';
+import { Helper, Wrapper } from "./components/Layout";
+import Header from './components/Header';
+import Filter from './containers/Filter';
 
 const Layout = styled.div`
   display: flex;
@@ -44,35 +27,40 @@ const LayoutColumnNarrow = styled.div`
 	flex: 0 1 300px;
 `;
 
-const Header = styled.div`
-	margin-bottom: 20px;
+const Content = styled.div`
+
+`;
+
+const Footer = styled.div`
+	background: darkred;
 `;
 
 class App extends Component {
   render() {
 		return (
-      <Container>
-				<Header>
-					<Layout>
+			<Helper>
+				<Wrapper>
+					<Header />
 
-					</Layout>
-				</Header>
+					<Content>
+						<Layout>
+							<LayoutColumnWide>
+								<Switch>
+									<Route exact path='/' component={Products} />
+									<Route path='/product/:id' component={Product} />
+								</Switch>
+							</LayoutColumnWide>
 
-				<Layout>
-					<LayoutColumnWide>
-						<Switch>
-							<Route exact path='/' component={Products} />
-							<Route path='/product/:id' component={Product} />
-						</Switch>
-					</LayoutColumnWide>
+							<LayoutColumnNarrow>
+								<Cart />
+								<Filter/>
+							</LayoutColumnNarrow>
+						</Layout>
+					</Content>
 
-					<LayoutColumnNarrow>
-						<Cart />
-					</LayoutColumnNarrow>
-				</Layout>
-
-				<div>Footer</div>
-      </Container>
+					<Footer>Footer</Footer>
+				</Wrapper>
+			</Helper>
     );
   }
 }

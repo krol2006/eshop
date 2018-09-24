@@ -86,6 +86,14 @@ const Filter = (props) => {
 						<FilterInput type="radio" name="filter" value="author" onChange={handleChange} checked={ filterBy === 'author' ? 'checked' : false } />
 						<FilterInputLabel>Автор</FilterInputLabel>
 					</FilterItem>
+					<FilterItem>
+						<FilterInput type="radio" name="filter" value="hello" onChange={handleChange} checked={ filterBy === 'hello' ? 'checked' : false } />
+						<FilterInputLabel>Hello category</FilterInputLabel>
+					</FilterItem>
+					<FilterItem>
+						<FilterInput type="radio" name="filter" value="kizlo" onChange={handleChange} checked={ filterBy === 'kizlo' ? 'checked' : false } />
+						<FilterInputLabel>Hello category</FilterInputLabel>
+					</FilterItem>
 				</FilterList>
 				<FilterSearchWrapper>
 					<FilterSearchInput type="search" value={searchBy} onChange={handleSearch} />

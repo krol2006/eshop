@@ -10,7 +10,7 @@ class Product extends Component {
 	componentWillMount(){
 		const { setCurrentProduct } = this.props;
 
-		axios.get('/books.json')
+		axios.get('/data/products.json')
 			.then(({ data }) => {
 				setCurrentProduct(find(data, { id: Number(this.props.match.params.id) }))
 			});
@@ -37,8 +37,8 @@ class Product extends Component {
 					<button type="button" onClick={() => this.goBack()}>Back</button>
 				</div>
 
-				{currentProduct.title}
-				<p>Author: {currentProduct.author}</p>
+				{currentProduct.name}
+				<p>Author: {currentProduct.description}</p>
 				<img src={currentProduct.image} alt={currentProduct.title} />
 				<button type="button" onClick={() => this.add(currentProduct)}>Добавить в корзину</button>
 			</div>
